@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name         = 'AnyCodable-FlightSchool'
+  s.name         = 'AnyCodable-amsfxj'
   s.module_name  = 'AnyCodable'
   s.version      = '0.6.9'
   s.summary      = 'Type-erased wrappers for Encodable, Decodable, and Codable values.'
