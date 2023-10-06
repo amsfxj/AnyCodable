@@ -66,6 +66,22 @@ class AnyEncodableTests: XCTestCase {
 
         XCTAssertEqual(encodedJSONObject, expectedJSONObject)
     }
+    
+    /// Flaky test, because order of JSON object elements is random during runs.
+    /// On failure, compare output strings.
+    func testEncodeNSNumberBoolean() throws {
+        let jsonString = #"{"int":0,"boolean":true}"#
+        let jsonObject = try JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: [])
+        let anyCodable = AnyCodable(jsonObject)
+
+        let encoder = JSONEncoder()
+        let encoded = try encoder.encode(anyCodable)
+
+        XCTAssertEqual(
+            String(data: encoded, encoding: .utf8),
+            jsonString
+        )
+    }
 
     func testEncodeNSNumber() throws {
         let dictionary: [String: NSNumber] = [
