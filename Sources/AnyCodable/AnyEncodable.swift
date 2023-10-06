@@ -55,13 +55,15 @@ extension _AnyEncodable {
         #if canImport(Foundation)
         case is NSNull:
             try container.encodeNil()
+        case let nsNumber as NSNumber where String(describing: type(of: nsNumber)) == "__NSCFBoolean":
+            try container.encode(nsNumber.boolValue)
         #endif
         case is Void:
             try container.encodeNil()
-        case let bool as Bool:
-            try container.encode(bool)
         case let int as Int:
             try container.encode(int)
+        case let bool as Bool:
+            try container.encode(bool)
         case let int8 as Int8:
             try container.encode(int8)
         case let int16 as Int16:
